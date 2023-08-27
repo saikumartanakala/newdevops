@@ -1,0 +1,2 @@
+build triger remotely
+http://13.114.224.252:8080/job/job-1/build?token=kumar
