@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    stages {
+        stage (git) {
+            steps {
+                git branch: 'main', url: 'https://github.com/saikumartanakala/newdevops.git'
+            }
+        }
+        stage (build) {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage (deploy) {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: '0f38d5ed-774a-46e1-9b46-e25d8c1d229a', path: '', url: 'http://52.199.230.241:8021/')], contextPath: 'saikumar', war: '**/*.war'
+            }
+        }
+    }
